@@ -11,6 +11,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions", defer:2
 zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "bobthecow/git-flow-completion"
 
 # Complete and autosuggestions menu
 unsetopt menu_complete
