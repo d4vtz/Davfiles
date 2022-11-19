@@ -19,6 +19,13 @@ setopt auto_menu
 zstyle ':completion:*:default' menu select=2
 bindkey '^ ' autosuggest-execute
 
+# Command Hystory
+setopt sharehistory
+setopt histignorealldups
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=$ZDOTDIR/zsh_history
+
 # Then, source plugins and add commands to $PATH
 zplug load
 
