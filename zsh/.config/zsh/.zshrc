@@ -12,7 +12,6 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
 plug "zsh-users/zsh-autosuggestions"
 plug "romkatv/powerlevel10k"
-plug "bobthecow/git-flow-completion"
 
 # Complete and autosuggestions menu
 autoload -Uz compinit && compinit
