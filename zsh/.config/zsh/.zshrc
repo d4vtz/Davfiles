@@ -5,15 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.zplug/init.zsh
-autoload -Uz compinit && compinit
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions", defer:2
-zplug "zsh-users/zsh-autosuggestions", defer:2
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-zplug "bobthecow/git-flow-completion"
+# Upload plugin manager zap
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-completions"
+plug "zsh-users/zsh-autosuggestions"
+plug "romkatv/powerlevel10k"
+plug "bobthecow/git-flow-completion"
 
 # Complete and autosuggestions menu
+autoload -Uz compinit && compinit
 unsetopt menu_complete
 setopt auto_menu
 zstyle ':completion:*:default' menu select=2
@@ -25,9 +27,6 @@ setopt histignorealldups
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=$ZDOTDIR/zsh_history
-
-# Then, source plugins and add commands to $PATH
-zplug load
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
