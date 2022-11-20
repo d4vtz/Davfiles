@@ -13,7 +13,6 @@ return {
 			nbsp = "␣",
 			eol = "↲",
 		},
-		shortmess = vim.opt.shortmess + { I = true },
 		showbreak = "↪ ",
 		wrap = true, -- soft wrap lines
 		spellfile = "~/.config/astronvim/lua/user/spell/es.utf-8.add",
