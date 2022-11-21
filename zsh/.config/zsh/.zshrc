@@ -8,9 +8,9 @@ fi
 # Upload plugin manager zap
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
 plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
 plug "romkatv/powerlevel10k"
 
 # Complete and autosuggestions menu
