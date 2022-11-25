@@ -2,3 +2,4 @@
 zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/zsh_history
 ltex.dictionary.es.txt
+**/__pycache__/**
