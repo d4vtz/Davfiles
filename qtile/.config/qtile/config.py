@@ -1,12 +1,12 @@
 import os
 import subprocess
 
-from libqtile import hook
-
+from core import hooks
 from core.groups import groups
 from core.keys import keys, mod, shift
 from core.layouts import floating_layout, layouts
 from core.screens import screens, widget_defaults
+from libqtile import hook
 
 # REVIEW options
 auto_fullscreen = True
@@ -20,9 +20,3 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 wl_input_rules = None
 wmname = "qtile"
-
-
-@hook.subscribe.startup_once
-def start_once():
-    home = os.path.expanduser("~")
-    subprocess.call([home + "/.config/qtile/scripts/autostart.sh"])
