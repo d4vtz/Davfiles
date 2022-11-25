@@ -1,6 +1,6 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
-
+from libqtile.utils import guess_terminal
 import os
 import subprocess
 
@@ -8,7 +8,7 @@ mod = "mod4"
 control = "control"
 shift = "shift"
 alt = "mod1"
-terminal = "kitty"
+terminal = guess_terminal()
 home = os.path.expanduser('~')
 
 # resize functions
