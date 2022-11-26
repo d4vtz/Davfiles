@@ -12,7 +12,7 @@ terminal = guess_terminal()
 home = os.path.expanduser('~')
 keys = [
     # essentials
-    Key([mod], "y", lazy.layout.hide()),
+    # Key([mod], "y", lazy.layout.hide()),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "q", lazy.window.kill(), desc="Kill active window"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle forward layout"),
@@ -71,8 +71,8 @@ keys = [
     # eww
     Key([mod], "d", lazy.spawn("" + home + "/.local/bin/toggle_eww"), desc="Toggle eww dashboard",),
     # brightness
-    Key([], 'XF86MonBrightnessUp', lazy.function(backlight('inc')), desc='Increase brightness'),
-    Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec')), desc='Decrease brightness'),
+    Key([mod], 'Prior', lazy.function(backlight('inc')), desc='Increase brightness'),
+    Key([mod], 'Next', lazy.function(backlight('dec')), desc='Decrease brightness'),
 ]
 
 def show_keys():
