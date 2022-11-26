@@ -50,10 +50,8 @@ keys = [
     Key([mod, shift], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "i", lazy.window.toggle_floating(), desc="Toggle floating mode for a window"),
     # program launches
-    Key([mod], "f", lazy.spawn("firefox"), desc="Launch Firefox"),
-    Key([mod], "p", lazy.spawn("nautilus"), desc="Launch Nautilus"),
-    Key([mod], "c", lazy.spawn("code"), desc="Launch VSCode"),
-    Key([mod], "n", lazy.spawn("notion-app"), desc="Launch Notion"),
+    Key([mod], "w", lazy.spawn("google-chrome-stable"), desc="Launch Google Chrome"),
+    Key([mod], "f", lazy.spawn("thunar"), desc="Launch Thunar"),
     Key([mod], "s", lazy.spawn("spotify"), desc="Launch Spotify"),
     Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term")),
     # screenshots
