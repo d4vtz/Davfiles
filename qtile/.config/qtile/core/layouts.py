@@ -1,24 +1,23 @@
-from libqtile import layout
 from libqtile.config import Match
-
+from libqtile.layout.floating import Floating
+from libqtile.layout.max import Max
+from libqtile.layout.tree import TreeTab
+from libqtile.layout.xmonad import MonadTall
 from utils.settings import colors
 
 layout_theme = {
-    "border_width": 2,
+    "border_width": 4,
     "margin": 4,
-    "border_focus": colors[0],
+    "border_focus": colors[8],
     "border_normal": colors[12],
     "font": "JetBrainsMono Nerd Font",
-    "grow_amount": 1,
+    "single_border_width": 0,
+    "single_margin": 10,
 }
 
 layouts = [
-    layout.Bsp(**layout_theme, fair=False, border_on_single=True),
-    layout.MonadTall(**layout_theme, ratio=0.6),
-    layout.Columns(**layout_theme, insert_position=1, border_on_single=True),
-    layout.Max(),
-    layout.Stack(num_stacks=1),
-    layout.TreeTab(
+    MonadTall(**layout_theme, ratio=0.6),
+    TreeTab(
         previous_on_rm=True,
         name="looking good",
         bg_color=colors[0],
@@ -32,13 +31,17 @@ layouts = [
         active_bg=colors[7],
         rounded=False,
     ),
+    Max(),
 ]
 
-floating_layout = layout.Floating(
-    **layout_theme,
+floating_layout = Floating(
+    border_focus=colors[8],
+    border_normal=colors[14],
+    border_width=4,
+    fullscreen_border_width=0,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
+        *Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
