@@ -1,5 +1,6 @@
 from libqtile.config import DropDown, Group, Key, Match, ScratchPad
 from libqtile.lazy import lazy
+from utils.functions import focus_next_group, focus_previous_group
 
 from .keys import keys, mod, shift
 
@@ -69,6 +70,21 @@ for index, group in enumerate(groups, start=1):
             lazy.group[group.name].toscreen(),
             desc="Move focused window to another group",
         )
+    )
+
+    keys.extend(
+        [
+            Key(
+                [mod],
+                "Left",
+                lazy.function(focus_previous_group),
+            ),
+            Key(
+                [mod],
+                "Right",
+                lazy.function(focus_next_group),
+            ),
+        ]
     )
 
 kitty_scratchpad = dict(
