@@ -123,3 +123,9 @@ def focus_next_group(qtile):
     next_group_index = qtile.groups.index(next_group)
     if next_group_index > group_index:
         qtile.current_screen.set_group(next_group)
+
+
+def float_to_front(qtile) -> None:
+    for window in qtile.current_group.windows:
+        if window.floating:
+            window.bring_to_front()

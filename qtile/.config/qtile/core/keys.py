@@ -3,7 +3,7 @@ import os
 from libqtile.config import Key
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from utils.functions import backlight, resize_down, resize_left, resize_right, resize_up
+from utils.functions import backlight, resize_down, resize_left, resize_right, resize_up, float_to_front
 
 mod = "mod4"
 control = "control"
@@ -124,9 +124,16 @@ keys = [
         lazy.window.toggle_floating(),
         desc="Toggle floating mode for a window",
     ),
+    Key([ ], 'F11', lazy.window.toggle_fullscreen()),
+
+  # Floating window management
+  Key([mod], 'space', lazy.window.toggle_floating()),
+  Key([mod], 'c', lazy.window.center()),
+  Key([mod], 'f', lazy.function(float_to_front)),
+
     # program launches
     Key([mod], "w", lazy.spawn("google-chrome-stable"), desc="Launch Google Chrome"),
-    Key([mod], "f", lazy.spawn("thunar"), desc="Launch Thunar"),
+    Key([mod], "e", lazy.spawn("thunar"), desc="Launch Thunar"),
     Key([mod], "s", lazy.spawn("spotify"), desc="Launch Spotify"),
     Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term")),
     # screenshots
