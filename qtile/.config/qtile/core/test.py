@@ -210,7 +210,9 @@ class UPowerWidget(base._Widget):
             bat = {}
 
             introspection = await self.bus.introspect(UPOWER_SERVICE, battery)
-            battery_obj = self.bus.get_proxy_object(UPOWER_SERVICE, battery, introspection)
+            battery_obj = self.bus.get_proxy_object(
+                UPOWER_SERVICE, battery, introspection
+            )
             battery_dev = battery_obj.get_interface(UPOWER_DEVICE)
             props = battery_obj.get_interface(PROPS_IFACE)
 
@@ -222,7 +224,9 @@ class UPowerWidget(base._Widget):
 
         # If user only wants named battery, get it here
         if self.battery_name:
-            battery_devices = [b for b in battery_devices if b["name"] == self.battery_name]
+            battery_devices = [
+                b for b in battery_devices if b["name"] == self.battery_name
+            ]
 
             if not battery_devices:
                 err = "No battery found matching {}.".format(self.battery_name)
@@ -264,7 +268,9 @@ class UPowerWidget(base._Widget):
                 tte = await dev.get_time_to_empty()
                 battery["tte"] = self.secs_to_hm(tte)
                 battery["ttf"] = ""
-            battery["status"] = next(x[1] for x in self.status if battery["fraction"] <= x[0])
+            battery["status"] = next(
+                x[1] for x in self.status if battery["fraction"] <= x[0]
+            )
 
         if draw:
             self.qtile.call_soon(self.bar.draw)
@@ -385,7 +391,8 @@ class UPowerWidget(base._Widget):
     def info(self):
         info = base._Widget.info(self)
         info["batteries"] = [
-            {k: v for k, v in x.items() if k not in ["device", "props"]} for x in self.batteries
+            {k: v for k, v in x.items() if k not in ["device", "props"]}
+            for x in self.batteries
         ]
         info["charging"] = self.charging
         info["levels"] = self.status

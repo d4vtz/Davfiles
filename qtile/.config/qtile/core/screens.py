@@ -34,6 +34,7 @@ def create_bar():
         margin=[10, 6, 6, 10],
     )
 
+
 screens = [
     Screen(
         wallpaper=wallpaper_main,
