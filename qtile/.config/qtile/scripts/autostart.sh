@@ -2,6 +2,7 @@
 
 export PATH="/home/dani/.local/bin:$PATH"
 
+udiskie -a &
 picom -b &
 eww daemon &
 volctl &

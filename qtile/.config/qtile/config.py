@@ -1,12 +1,8 @@
-import os
-import subprocess
-
 from core import hooks
 from core.groups import groups
-from core.keys import keys, mod, shift
+from core.keys import keys
 from core.layouts import floating_layout, layouts
 from core.screens import screens, widget_defaults
-from libqtile import hook
 
 # REVIEW options
 auto_fullscreen = True
