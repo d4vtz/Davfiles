@@ -14,13 +14,13 @@ class Powerline:
 
     @property
     def right(self) -> str:
-        if self.shape == "slash":
+        if self.shape != "slash":
             return f"{self.shape}_right"
         return f"forward_{self.shape}"
 
     @property
     def left(self) -> str:
-        if self.shape == "slash":
+        if self.shape != "slash":
             return f"{self.shape}_left"
         return f"back_{self.shape}"
 
