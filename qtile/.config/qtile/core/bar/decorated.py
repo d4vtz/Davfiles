@@ -6,7 +6,7 @@ color = Optional[str]
 
 
 class Powerline:
-    def __init__(self, shape) -> None:
+    def __init__(self, shape: str) -> None:
         if shape in ["arrow", "rounded", "slash"]:
             self.shape = shape
         else:
