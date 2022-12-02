@@ -1,6 +1,6 @@
 from typing import Optional
 
-from core.bar.decorated import BarTheme
+from core.bar.decorated import Decorations
 from extras.groupbox import GroupBox
 from extras.volume import Volume
 from libqtile.bar import CALCULATED
@@ -17,7 +17,7 @@ from qtile_extras import widget
 
 class Widget:
     def __init__(self) -> None:
-        self.theme = BarTheme()
+        self.theme = Decorations()
 
     def sep(self, fg: str, offset=0, padding=8) -> TextBox:
         return TextBox(
