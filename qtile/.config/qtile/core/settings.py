@@ -20,7 +20,8 @@ class Colors:
     # GroupBox color
     home = cyan
     web = yellow
-    read = dark_blue
+    code = white
+    read = violet
     music = green
     media = orange
     social = blue
