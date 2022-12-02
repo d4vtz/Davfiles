@@ -1,3 +1,4 @@
+from os import read
 from typing import Optional
 
 from core.bar.decorated import Decorations, Powerline
@@ -8,7 +9,7 @@ from libqtile.lazy import lazy
 from qtile_extras.widget import modify
 
 color = Optional[str]
-from core.settings import colors
+from core.settings import Colors, colors
 from libqtile.widget import TextBox
 from qtile_extras import widget
 
@@ -17,6 +18,7 @@ class Widget:
     def __init__(self) -> None:
         self.decorations = Decorations()
         self.powerline = Powerline("arrow")
+        self.colors = Colors
 
     def sep(self, fg: str, padding: int = 8) -> TextBox:
         return TextBox(
@@ -36,29 +38,29 @@ class Widget:
             text="",
         )
 
-    def groups(self, bg: str) -> GroupBox:
+    def groups(self) -> GroupBox:
         return GroupBox(
-            **self.decorations.icon_font(15),
-            background=bg,
+            **self.decorations.icon_font(size=16),
             colors=[
-                colors[8],
-                colors[13],
-                colors[4],
-                colors[15],
-                colors[14],
-                colors[10],
-                colors[3],
+                self.colors.home,
+                self.colors.web,
+                self.colors.code,
+                self.colors.read,
+                self.colors.music,
+                self.colors.media,
+                self.colors.social,
+                self.colors.system,
             ],
             highlight_color=colors[0],
             highlight_method="line",
             invert=True,
             rainbow=True,
-            this_current_screen_border=colors[7],
-            urgent_border=colors[11],
-            inactive=colors[3],
+            this_current_screen_border=self.colors.cyan,
+            urgent_border=self.colors.alert,
+            inactive=self.colors.inactive,
             borderwidth=3,
             disable_drag=True,
-            padding_x=10,
+            padding_x=3,
             rounded=True,
         )
 

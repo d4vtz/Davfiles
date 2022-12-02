@@ -32,7 +32,7 @@ def create_bar():
             # wid.Spacer(length=2),
             widgets.logo(fg="#00ffff"),
             widgets.sep(fg="#ffffff"),
-            widgets.groups(bg=colors[0]),
+            widgets.groups(),
             widget.gen_spacer(),
             widgets.window_name(fg=colors[0], bg="#eee86e"),
             widget.gen_spacer(),
