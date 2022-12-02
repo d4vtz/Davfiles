@@ -27,8 +27,10 @@ class Powerline:
 
 class Decorations:
     @staticmethod
-    def icon_font(size: int = 14) -> dict[str, str | int]:
-        return {"font": "Font Awesome 6 Free Solid", "fontsize": size}
+    def icon_font(
+        size: int = 14, font: str = "Font Awesome 6 Free Solid"
+    ) -> dict[str, str | int]:
+        return {"font": font, "fontsize": size}
 
     @staticmethod
     def base(fg: color, bg: color = None) -> Dict[str, color]:
