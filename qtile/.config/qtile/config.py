@@ -1,8 +1,14 @@
-from core import hooks
-from core.groups import groups
-from core.keys import keys
-from core.layouts import floating_layout, layouts
-from core.screens import screens, widget_defaults
+from core import Settings
+
+settings = Settings()
+
+groups = settings.groups
+keys = settings.keys
+floating_layout = settings.floating_layout
+layouts = settings.layouts
+screens = settings.screens
+widget_defaults = settings.widget_defaults
+hooks = settings.hooks
 
 # REVIEW options
 auto_fullscreen = True
