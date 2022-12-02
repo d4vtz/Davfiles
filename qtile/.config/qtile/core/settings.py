@@ -1,4 +1,31 @@
-# Catppuccin colors
+class Colors:
+    black = "#2E3440"
+    white = "#ECEFF4"
+    gray = "#4C566A"
+    blue = "#5E81AC"
+    cyan = "#88C0D0"
+    dark_blue = "#81A1C1"
+    red = "#BF616A"
+    orange = "#D08770"
+    yellow = "#EBCB8B"
+    green = "#A3BE8C"
+    violet = "#B48EAD"
+
+    background = black
+    foreground = white
+    active = cyan
+    inactive = gray
+    alert = red
+
+    # GroupBox color
+    home = cyan
+    web = yellow
+    read = dark_blue
+    music = green
+    media = orange
+    social = blue
+    system = red
+
 
 colors = [
     "#2E3440",  # nord0
