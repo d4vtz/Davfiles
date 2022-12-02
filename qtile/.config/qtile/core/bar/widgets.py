@@ -1,6 +1,6 @@
 from typing import Optional
 
-from core.bar.decorated import Decorations
+from core.bar.decorated import Decorations, Powerline
 from extras.groupbox import GroupBox
 from extras.volume import Volume
 from libqtile.bar import CALCULATED
@@ -12,37 +12,33 @@ from core.settings import colors
 from libqtile.widget import TextBox
 from qtile_extras import widget
 
-# from extras.textbox import TextBox
-
 
 class Widget:
     def __init__(self) -> None:
-        self.theme = Decorations()
+        self.decorations = Decorations()
+        self.powerline = Powerline("arrow")
 
-    def sep(self, fg: str, offset=0, padding=8) -> TextBox:
+    def sep(self, fg: str, padding: int = 8) -> TextBox:
         return TextBox(
-            **self.theme.base(fg),
-            **self.theme.icon_font(),
-            offset=offset,
+            **self.decorations.base(fg),
+            **self.decorations.icon_font(),
             padding=padding,
             text="",
         )
 
     def logo(self, fg: color, bg: color = None) -> TextBox:
-        return modify(
-            TextBox,
-            **self.theme.base(fg, bg),
-            **self.theme.decoration(),
-            **self.theme.icon_font(),
+        return TextBox(
+            **self.decorations.base(fg, bg),
+            **self.decorations.decoration(),
+            **self.decorations.icon_font(font="Iosevka Nerd Font", size=16),
             mouse_callbacks={"Button1": lazy.restart()},
-            offset=4,
             padding=17,
             text="",
         )
 
     def groups(self, bg: str) -> GroupBox:
         return GroupBox(
-            **self.theme.icon_font(15),
+            **self.decorations.icon_font(15),
             background=bg,
             colors=[
                 colors[8],
@@ -70,16 +66,16 @@ class Widget:
         return [
             modify(
                 TextBox,
-                **self.theme.base(fg, bg),
-                **self.theme.decoration("left"),
-                **self.theme.icon_font(),
+                **self.decorations.base(fg, bg),
+                **self.decorations.decoration("left"),
+                **self.decorations.icon_font(),
                 text="",
                 x=4,
             ),
             modify(
                 Volume,
-                **self.theme.base(fg, bg),
-                **self.theme.powerline("arrow_right"),
+                **self.decorations.base(fg, bg),
+                **self.decorations.powerline(self.powerline.right),
                 commands={
                     "decrease": "pamixer --decrease 5",
                     "increase": "pamixer --increase 5",
@@ -93,15 +89,15 @@ class Widget:
     def updates(self, bg: str, fg: str) -> list:
         return [
             TextBox(
-                **self.theme.base(fg, bg),
-                **self.theme.icon_font(),
+                **self.decorations.base(fg, bg),
+                **self.decorations.icon_font(),
                 offset=-1,
                 text="",
                 x=-5,
             ),
             widget.CheckUpdates(
-                **self.theme.base(fg, bg),
-                **self.theme.decoration("right"),
+                **self.decorations.base(fg, bg),
+                **self.decorations.decoration("right"),
                 colour_have_updates=fg,
                 colour_no_updates=fg,
                 display_format="{updates} updates  ",
@@ -115,8 +111,8 @@ class Widget:
 
     def window_name(self, bg: str, fg: str) -> object:
         return widget.WindowName(
-            **self.theme.base(fg, bg),
-            **self.theme.decoration("all"),
+            **self.decorations.base(fg, bg),
+            **self.decorations.decoration("all"),
             format="{name}",
             max_chars=60,
             width=CALCULATED,
