@@ -1,6 +1,5 @@
 from typing import Dict, Optional
 
-from core.settings import colors
 from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
 
 color = Optional[str]
@@ -27,17 +26,16 @@ class Powerline:
 
 
 class Decorations:
-    def __init__(self) -> None:
-        self.colors = colors
-        self.powerline_shape = Powerline("arrow")
-
     @staticmethod
     def icon_font(size: int = 14) -> dict[str, str | int]:
         return {"font": "Font Awesome 6 Free Solid", "fontsize": size}
 
-    def base(self, fg: color, bg: color = None) -> Dict[str, color]:
+    @staticmethod
+    def base(fg: color, bg: color = None) -> Dict[str, color]:
         if bg is None:
-            bg = self.colors[0]
+            return {
+                "foreground": fg,
+            }
         return {
             "background": bg,
             "foreground": fg,
