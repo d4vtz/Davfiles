@@ -3,7 +3,6 @@ from libqtile import bar
 from libqtile.config import Screen
 
 from .settings import colors, wallpaper_main
-from .widgets import Widgets
 
 widgets = Widget()
 widget_defaults = dict(
@@ -16,32 +15,12 @@ extension_defaults = widget_defaults.copy()
 
 def create_bar():
     """Create top bar, defined as function to allow duplication in other monitors"""
-    widget = Widgets()
+    widget = Widget()
     return bar.Bar(
-        [
-            # widget.launcher(),
-            # widget.gen_groupbox(),
-            # widget.gen_spacer(),
-            # widget.w_window_name(),
-            # widget.gen_spacer(),
-            widget.w_systray(),
-            # widget.separator(),
-            # *widget.gen_current_layout(),
-            # *widget.gen_clock(),
-            # widget.w_power(),
-            # wid.Spacer(length=2),
-            widgets.logo(fg="#00ffff"),
-            widgets.sep(fg="#ffffff"),
-            widgets.groups(),
-            widget.gen_spacer(),
-            widgets.window_name(fg=colors[0], bg="#eee86e"),
-            widget.gen_spacer(),
-            *widgets.volume(bg="#bb0fff", fg="#000"),
-            *widgets.updates(bg="#f2d2aa", fg="#11111B"),
-        ],
+        widget.widgets,
         26,
         margin=[10, 8, 8, 10],
-        background=colors[0],
+        background=widgets.colors.background,
     )
 
 

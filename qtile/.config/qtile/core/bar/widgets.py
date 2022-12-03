@@ -51,7 +51,7 @@ class Widget:
                 self.colors.social,
                 self.colors.system,
             ],
-            highlight_color=colors[0],
+            highlight_color=self.colors.background,
             highlight_method="line",
             invert=True,
             rainbow=True,
@@ -65,18 +65,17 @@ class Widget:
         )
 
     def volume(self, bg: str, fg: str) -> list:
+        base = self.decorations.base(fg, bg)
         return [
-            modify(
-                TextBox,
-                **self.decorations.base(fg, bg),
+            widget.TextBox(
+                **base,
                 **self.decorations.decoration("left"),
                 **self.decorations.icon_font(),
                 text="",
-                x=4,
             ),
             modify(
                 Volume,
-                **self.decorations.base(fg, bg),
+                **base,
                 **self.decorations.powerline(self.powerline.right),
                 commands={
                     "decrease": "pamixer --decrease 5",
@@ -120,3 +119,27 @@ class Widget:
             width=CALCULATED,
             empty_group_string="Desktop",
         )
+
+    @property
+    def widgets(self):
+        return [
+            # widget.launcher(),
+            # widget.gen_groupbox(),
+            # widget.gen_spacer(),
+            # widget.w_window_name(),
+            # widget.gen_spacer(),
+            widget.Systray(),
+            # widget.separator(),
+            # *widget.gen_current_layout(),
+            # *widget.gen_clock(),
+            # widget.w_power(),
+            # wid.Spacer(length=2),
+            self.logo(fg="#00ffff"),
+            self.sep(fg="#ffffff"),
+            self.groups(),
+            widget.Spacer(),
+            self.window_name(fg=colors[0], bg="#eee86e"),
+            widget.Spacer(),
+            *self.volume(bg=self.colors.cyan, fg=self.colors.gray),
+            *self.updates(bg="#f2d2aa", fg="#11111B"),
+        ]
