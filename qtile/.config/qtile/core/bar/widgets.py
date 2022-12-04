@@ -12,7 +12,7 @@ from qtile_extras.widget import modify
 color = Optional[str]
 from core.settings import Colors
 # from libqtile import widget
-from libqtile.widget import CurrentLayoutIcon, TextBox
+from libqtile.widget import TextBox
 from qtile_extras import widget
 
 
@@ -66,36 +66,13 @@ class Widget:
             rounded=True,
         )
 
-    def volume(self, bg: str, fg: str) -> list:
-        base = self.decorations.base(fg, bg)
-        return [
-            widget.TextBox(
-                **base,
-                **self.decorations.decoration("left"),
-                **self.decorations.icon_font(),
-                text="",
-            ),
-            modify(
-                Volume,
-                **base,
-                **self.decorations.powerline(self.powerline.right),
-                commands={
-                    "decrease": "pamixer --decrease 5",
-                    "increase": "pamixer --increase 5",
-                    "get": "pamixer --get-volume-human",
-                    "mute": "pamixer --toggle-mute",
-                },
-                update_interval=0.1,
-            ),
-        ]
-
     def updates(self, bg: str, fg: str) -> list:
         return [
             TextBox(
                 **self.decorations.base(fg, bg),
                 **self.decorations.icon_font(),
+                **self.decorations.decoration("left"),
                 text="",
-                x=-5,
             ),
             widget.CheckUpdates(
                 **self.decorations.base(fg, bg),
@@ -146,6 +123,40 @@ class Widget:
             foreground=self.colors.white,
         )
 
+    def exit(self, fg: str, bg: str):
+        return widget.TextBox(
+            **self.decorations.base(fg, bg),
+            **self.decorations.decoration("all"),
+            **self.decorations.icon_font(font="Iosevka Nerd Font", size=16),
+            mouse_callbacks={"Button1": lazy.restart()},
+            padding=12,
+            text="   ",
+        )
+
+    def status_notifier(self):
+        return widget.StatusNotifier(
+            icon_size=24,
+            icon_theme="/usr/share/icons/Papirus",
+            padding=10,
+            hide_after=5,
+            menu_width=250,
+            show_menu_icons=True,
+            background=self.colors.background,
+            highlight_colour=self.colors.gray,
+            menu_background=self.colors.background,
+            menu_foreground=self.colors.white,
+            menu_foreground_disabled=self.colors.red,
+            menu_icon_size=16,
+            menu_fontsize=16,
+            menu_foreground_highlighted=self.colors.violet,
+            highlight_radius=7.5,
+            separator_colour=self.colors.gray,
+            menu_border=self.colors.white,
+            menu_border_width=1,
+            menu_offset_x=2,
+            menu_offset_y=6,
+        )
+
     @property
     def widgets(self):
         return [
@@ -157,7 +168,11 @@ class Widget:
             widget.Spacer(),
             self.window_name(),
             widget.Spacer(),
-            *self.volume(bg=self.colors.cyan, fg=self.colors.gray),
-            *self.updates(bg="#f2d2aa", fg="#11111B"),
+            widget.Systray(padding=8),
+            self.status_notifier(),
+            self.sep(fg=self.colors.gray),
+            *self.updates(bg=self.colors.cyan, fg=self.colors.black),
             *self.clock(bg=self.colors.white, fg=self.colors.black),
+            self.sep(fg=self.colors.gray),
+            self.exit(fg=self.colors.red, bg=self.colors.cyan),
         ]
