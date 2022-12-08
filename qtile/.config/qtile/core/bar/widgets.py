@@ -171,6 +171,7 @@ class Widget:
             widget.Systray(padding=8),
             self.status_notifier(),
             self.sep(fg=self.colors.gray),
+            widget.KeyboardLayout(configured_keyboards=["us", "us intl"], display_map={"us": "us", "us intl": "US"}),
             *self.updates(bg=self.colors.cyan, fg=self.colors.black),
             *self.clock(bg=self.colors.white, fg=self.colors.black),
             self.sep(fg=self.colors.gray),
