@@ -4,6 +4,7 @@ export PATH="/home/dani/.local/bin:$PATH"
 
 udiskie -a &
 picom --experimental-backend &
+dusnt &
 eww daemon &
 volctl &
 nm-applet &
