@@ -5,7 +5,7 @@ from core.bar.decorated import Decorations, Powerline
 from extras.clock import Clock
 from extras.groupbox import GroupBox
 from extras.volume import Volume
-from extras.updates import CheckUpdates
+from extras.updates import CheckUpdate
 from libqtile.bar import CALCULATED
 from libqtile.lazy import lazy
 from qtile_extras.widget import modify
@@ -76,7 +76,7 @@ class Widget:
                 text="",
             ),
             modify(
-                CheckUpdates,
+                CheckUpdate,
                 **self.decorations.base(fg, bg),
                 **self.decorations.powerline(self.powerline.right),
                 colour_have_updates=fg,
@@ -85,6 +85,7 @@ class Widget:
                 distro={"pacman":"checkupdates", "aur": "paru -Qu"},
                 initial_text="No updates  ",
                 no_update_string="No updates  ",
+                execute=True,
                 padding=0,
                 update_interval=3600,
             ),

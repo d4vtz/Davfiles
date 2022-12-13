@@ -1,9 +1,10 @@
 from subprocess import CalledProcessError, Popen
 
+from libqtile.command.base import expose_command
 from libqtile.widget import base
 
 
-class CheckUpdates(base.ThreadPoolText):
+class CheckUpdate(base.ThreadPoolText):
     CMD_DICT = {
         "pacman": "checkupdates",
         "paru": "paru -Qu",
@@ -20,7 +21,7 @@ class CheckUpdates(base.ThreadPoolText):
         **config,
     ) -> None:
         base.ThreadPoolText.__init__(self, config.pop("initial_text", ""), **config)
-        self.add_defaults(CheckUpdates.defaults)
+        self.add_defaults(CheckUpdate.defaults)
 
         self.distro = distro or self.CMD_DICT
         self.initial_text = initial_text
@@ -30,19 +31,26 @@ class CheckUpdates(base.ThreadPoolText):
         self.execute = execute
 
         if self.execute:
-            self.add_callbacks({"Button1": self.do_execute})
+            self.add_callbacks(
+                {"Button1": self.get_updates, "Button2": self.update_hook}
+            )
 
-        self.updates = {}
+        self.updates = []
 
     def _check_updates(self) -> str:
+        updates = 0
         try:
-            updates = 0
+            self.updates = []
             for repo, cmd in self.distro.items():
-                update = self.call_process(cmd, shell=True)
-                self.updates[repo] = update
-                updates += len(update.splitlines())
+                update = self.call_process(cmd, shell=True).splitlines()
+                packages = [package.split()[0] for package in update]
+
+                updates += len(update)
+                if repo != "pacman":
+                    self.updates.append("---------- AUR ----------")
+                self.updates.extend(packages)
         except CalledProcessError:
-            updates = -1
+            updates += 0
 
         if self.layout:
             if updates == 0:
@@ -61,9 +69,17 @@ class CheckUpdates(base.ThreadPoolText):
             self._process = Popen(self.execute, shell=True)
             self.timeout_add(self.execute_polling_interval, self._refresh_count)
 
-    def _refresh_count(self):
+    def _refresh_count(self) -> None:
         if self._process.poll() is None:
             self.timeout_add(self.execute_polling_interval, self._refresh_count)
 
         else:
             self.timer_setup()
+
+    def get_updates(self) -> None:
+        updates = "\n".join(self.updates)
+        Popen(f"notify-send '{updates}'", shell=True)
+
+    @expose_command()
+    def update_hook(self) -> None:
+        self.poll()
