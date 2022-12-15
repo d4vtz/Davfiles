@@ -3,7 +3,8 @@
 export PATH="/home/dani/.local/bin:$PATH"
 
 udiskie -a &
-picom -b &
+picom --experimental-backend &
+dusnt &
 eww daemon &
 volctl &
 nm-applet &

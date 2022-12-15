@@ -198,6 +198,8 @@ keys = [
     # brightness
     Key([mod], "Prior", lazy.function(backlight("inc")), desc="Increase brightness"),
     Key([mod], "Next", lazy.function(backlight("dec")), desc="Decrease brightness"),
+    #LayoutKey
+    Key([mod, shift], "k", lazy.widget["keyboardlayout"].next_keyboard(), desc="Swich layout key"),
 ]
 
 
