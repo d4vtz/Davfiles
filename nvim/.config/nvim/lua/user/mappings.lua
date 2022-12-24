@@ -18,6 +18,8 @@ return {
 		["hw"] = { "<cmd>HopWord<cr>", desc = "Lanzar HopWord" },
 		["hc"] = { "<cmd>HopChar2<cr>" },
 		["<leader>r"] = { ":RunCode<CR>", desc = "Run Code" },
+		["<leader>n"] = { "<cmd>NeoRootSwitchMode<cr>", desc = "Change root" },
+		["<leader>m"] = { "<cmd>NeoRootChange<cr>", desc = "Create new root" },
 	},
 	t = {
 		-- setting a mapping to false will disable it

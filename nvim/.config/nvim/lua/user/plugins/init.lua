@@ -12,4 +12,11 @@ return {
   ["CRAG666/code_runner.nvim"] = require("user.plugins.code_runner"),
   ["ellisonleao/glow.nvim"] = require("user.plugins.glow"),
   ["simrat39/rust-tools.nvim"] = {},
+  ["nyngwang/NeoRoot.lua"] = {
+    config = function()
+      require("neo-root").setup({
+        CUR_MODE = 2, -- 1 for file/buffer mode, 2 for proj-mode
+      })
+    end,
+  },
 }
