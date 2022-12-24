@@ -16,27 +16,27 @@ workspace_names = [
 groups = [
     Group(
         name="Home",
-        label="",
+        label=" ",
     ),
     Group(
         name="Web",
-        label="",
+        label=" ",
         matches=[Match(wm_class="google-chrome")],
     ),
     Group(
         name="Code",
-        label="",
+        label=" ",
         matches=[Match(wm_class="code")],
     ),  #   
     Group(
         name="Physic",
-        label="",
+        label=" ",
         matches=[Match(wm_class="Zathura")],
         layout="looking good",
     ),
     Group(
         name="Music",
-        label="",
+        label=" ",
     ),
     Group(
         name="Media",
@@ -44,11 +44,11 @@ groups = [
     ),
     Group(
         name="Social",
-        label="",
+        label=" ",
     ),
     Group(
         name="System",
-        label="",
+        label=" ",
         matches=[Match(wm_class="pavucontrol")],
     ),
 ]

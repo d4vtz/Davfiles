@@ -1,13 +1,11 @@
 import os
 from typing import Optional
 
-from core.bar.decorated import ThemeSettings
 from extras.clock import Clock
 from extras.groupbox import GroupBox
 from extras.updates import CheckUpdate
 from libqtile.bar import CALCULATED
 from libqtile.lazy import lazy
-from qtile_extras.widget import modify
 
 color = Optional[str]
 from core.settings import Colors
@@ -18,29 +16,31 @@ from qtile_extras import widget
 
 class Widget:
     def __init__(self) -> None:
-        self.settings = ThemeSettings()
         self.colors = Colors()
 
     def sep(self, padding: int = 8) -> TextBox:
         return TextBox(
-            foreground=self.colors.foreground,
-            **self.settings.font(),
+            foreground=self.colors.gray,
             padding=padding,
-            text="",
+            font="Iosevka Nerd Font",
+            fontsize=20,
+            text="",
         )
 
     def logo(self) -> TextBox:
         return TextBox(
-            foreground=self.colors.foreground,
-            **self.settings.font(font="Iosevka Nerd Font", size=16),
+            foreground=self.colors.cyan,
             mouse_callbacks={"Button1": lazy.restart()},
             padding=12,
-            text="    ",
+            font="Iosevka Nerd Font",
+            fontsize=16,
+            text=" ",
         )
 
     def groups(self) -> GroupBox:
         return GroupBox(
-            **self.settings.font(size=16),
+            font="Iosevka Nerd Font",
+            fontsize=16,
             colors=[
                 self.colors.home,
                 self.colors.web,
@@ -58,28 +58,27 @@ class Widget:
             this_current_screen_border=self.colors.cyan,
             urgent_border=self.colors.alert,
             inactive=self.colors.inactive,
-            borderwidth=3,
             disable_drag=True,
             padding_x=3,
-            rounded=True,
+            center_aligned=True,
         )
 
     def updates(self) -> list:
         return [
             TextBox(
-                foreground=self.colors.foreground,
-                **self.settings.font(),
-                text="",
+                foreground=self.colors.yellow,
+                font="Iosevka Nerd Font",
+                fontsize=18,
+                text=" ",
             ),
-            modify(
-                CheckUpdate,
+            CheckUpdate(
                 foreground=self.colors.foreground,
-                colour_have_updates=self.colors.foreground,
+                colour_have_updates=self.colors.red,
                 colour_no_updates=self.colors.foreground,
-                display_format="{updates} updates  ",
-                distro={"pacman":"checkupdates", "aur": "paru -Qu"},
+                display_format="{updates} updates",
+                distro={"pacman": "checkupdates", "aur": "paru -Qu"},
                 initial_text="No updates  ",
-                no_update_string="No updates  ",
+                no_update_string="Updated",
                 execute=True,
                 padding=0,
                 update_interval=3600,
@@ -97,8 +96,9 @@ class Widget:
     def clock(self) -> list:
         return [
             TextBox(
-                foreground=self.colors.foreground,
-                **self.settings.font(),
+                foreground=self.colors.orange,
+                font="Iosevka Nerd Font",
+                fontsize=16,
                 text="",
             ),
             Clock(
@@ -120,11 +120,11 @@ class Widget:
 
     def exit(self):
         return widget.TextBox(
-            foreground=self.colors.foreground,
-            **self.settings.font(font="Iosevka Nerd Font", size=16),
+            foreground=self.colors.red,
+            font="Iosevka Nerd Font",
+            fontsize=16,
             mouse_callbacks={"Button1": lazy.restart()},
-            padding=12,
-            text="   ",
+            text=" ",
         )
 
     def status_notifier(self):
@@ -165,7 +165,10 @@ class Widget:
             widget.Systray(padding=8),
             self.status_notifier(),
             self.sep(),
-            widget.KeyboardLayout(configured_keyboards=["us", "us intl"], display_map={"us": "us", "us intl": "US"}),
+            widget.KeyboardLayout(
+                configured_keyboards=["us", "us intl"],
+                display_map={"us": "us", "us intl": "US"},
+            ),
             *self.updates(),
             *self.clock(),
             self.sep(),
