@@ -19,7 +19,7 @@ from qtile_extras import widget
 class Widget:
     def __init__(self) -> None:
         self.settings = ThemeSettings()
-        self.colors = Colors
+        self.colors = Colors()
 
     def sep(self, fg: str, padding: int = 8) -> TextBox:
         return TextBox(
