@@ -21,17 +21,17 @@ class Widget:
         self.settings = ThemeSettings()
         self.colors = Colors()
 
-    def sep(self, fg: str, padding: int = 8) -> TextBox:
+    def sep(self, padding: int = 8) -> TextBox:
         return TextBox(
-            **self.settings.ground_colors(fg),
+            foreground=self.colors.foreground,
             **self.settings.font(),
             padding=padding,
             text="",
         )
 
-    def logo(self, fg: color) -> TextBox:
+    def logo(self) -> TextBox:
         return TextBox(
-            **self.settings.ground_colors(fg),
+            foreground=self.colors.foreground,
             **self.settings.font(font="Iosevka Nerd Font", size=16),
             mouse_callbacks={"Button1": lazy.restart()},
             padding=12,
@@ -64,18 +64,18 @@ class Widget:
             rounded=True,
         )
 
-    def updates(self, fg: str) -> list:
+    def updates(self) -> list:
         return [
             TextBox(
-                **self.settings.ground_colors(fg),
+                foreground=self.colors.foreground,
                 **self.settings.font(),
                 text="",
             ),
             modify(
                 CheckUpdate,
-                **self.settings.ground_colors(fg),
-                colour_have_updates=fg,
-                colour_no_updates=fg,
+                foreground=self.colors.foreground,
+                colour_have_updates=self.colors.foreground,
+                colour_no_updates=self.colors.foreground,
                 display_format="{updates} updates  ",
                 distro={"pacman":"checkupdates", "aur": "paru -Qu"},
                 initial_text="No updates  ",
@@ -94,15 +94,15 @@ class Widget:
             empty_group_string="Desktop",
         )
 
-    def clock(self, fg: str) -> list:
+    def clock(self) -> list:
         return [
             TextBox(
-                **self.settings.ground_colors(fg),
+                foreground=self.colors.foreground,
                 **self.settings.font(),
                 text="",
             ),
             Clock(
-                **self.settings.ground_colors(fg),
+                foreground=self.colors.foreground,
                 format="%A  %-I:%M %p ",
                 long_format="%-d de %B del %Y ",
                 padding_x=-15,
@@ -118,9 +118,9 @@ class Widget:
             foreground=self.colors.white,
         )
 
-    def exit(self, fg: str):
+    def exit(self):
         return widget.TextBox(
-            **self.settings.ground_colors(fg),
+            foreground=self.colors.foreground,
             **self.settings.font(font="Iosevka Nerd Font", size=16),
             mouse_callbacks={"Button1": lazy.restart()},
             padding=12,
@@ -154,20 +154,20 @@ class Widget:
     @property
     def widgets(self):
         return [
-            self.logo(fg=self.colors.cyan),
-            self.sep(fg=self.colors.gray),
+            self.logo(),
+            self.sep(),
             self.gen_current_layout(),
-            self.sep(fg=self.colors.gray),
+            self.sep(),
             self.groups(),
             widget.Spacer(),
             self.window_name(),
             widget.Spacer(),
             widget.Systray(padding=8),
             self.status_notifier(),
-            self.sep(fg=self.colors.gray),
+            self.sep(),
             widget.KeyboardLayout(configured_keyboards=["us", "us intl"], display_map={"us": "us", "us intl": "US"}),
-            *self.updates(fg=self.colors.foreground),
-            *self.clock(fg=self.colors.foreground),
-            self.sep(fg=self.colors.gray),
-            self.exit(fg=self.colors.red),
+            *self.updates(),
+            *self.clock(),
+            self.sep(),
+            self.exit(),
         ]
