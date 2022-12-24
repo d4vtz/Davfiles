@@ -1,10 +1,9 @@
 import os
 from typing import Optional
 
-from core.bar.decorated import Decorations, Powerline
+from core.bar.decorated import ThemeSettings
 from extras.clock import Clock
 from extras.groupbox import GroupBox
-from extras.volume import Volume
 from extras.updates import CheckUpdate
 from libqtile.bar import CALCULATED
 from libqtile.lazy import lazy
@@ -19,23 +18,21 @@ from qtile_extras import widget
 
 class Widget:
     def __init__(self) -> None:
-        self.decorations = Decorations()
-        self.powerline = Powerline("arrow")
+        self.settings = ThemeSettings()
         self.colors = Colors
 
     def sep(self, fg: str, padding: int = 8) -> TextBox:
         return TextBox(
-            **self.decorations.base(fg),
-            **self.decorations.icon_font(),
+            **self.settings.ground_colors(fg),
+            **self.settings.font(),
             padding=padding,
             text="",
         )
 
-    def logo(self, fg: color, bg: color = None) -> TextBox:
+    def logo(self, fg: color) -> TextBox:
         return TextBox(
-            **self.decorations.base(fg, bg),
-            **self.decorations.decoration("all"),
-            **self.decorations.icon_font(font="Iosevka Nerd Font", size=16),
+            **self.settings.ground_colors(fg),
+            **self.settings.font(font="Iosevka Nerd Font", size=16),
             mouse_callbacks={"Button1": lazy.restart()},
             padding=12,
             text="    ",
@@ -43,7 +40,7 @@ class Widget:
 
     def groups(self) -> GroupBox:
         return GroupBox(
-            **self.decorations.icon_font(size=16),
+            **self.settings.font(size=16),
             colors=[
                 self.colors.home,
                 self.colors.web,
@@ -67,18 +64,16 @@ class Widget:
             rounded=True,
         )
 
-    def updates(self, bg: str, fg: str) -> list:
+    def updates(self, fg: str) -> list:
         return [
             TextBox(
-                **self.decorations.base(fg, bg),
-                **self.decorations.icon_font(),
-                **self.decorations.decoration("left"),
+                **self.settings.ground_colors(fg),
+                **self.settings.font(),
                 text="",
             ),
             modify(
                 CheckUpdate,
-                **self.decorations.base(fg, bg),
-                **self.decorations.powerline(self.powerline.right),
+                **self.settings.ground_colors(fg),
                 colour_have_updates=fg,
                 colour_no_updates=fg,
                 display_format="{updates} updates  ",
@@ -99,18 +94,15 @@ class Widget:
             empty_group_string="Desktop",
         )
 
-    def clock(self, bg: str, fg: str) -> list:
+    def clock(self, fg: str) -> list:
         return [
-            modify(
-                TextBox,
-                **self.decorations.base(fg, bg),
-                **self.decorations.icon_font(),
+            TextBox(
+                **self.settings.ground_colors(fg),
+                **self.settings.font(),
                 text="",
             ),
-            modify(
-                Clock,
-                **self.decorations.base(fg, bg),
-                **self.decorations.decoration("right"),
+            Clock(
+                **self.settings.ground_colors(fg),
                 format="%A  %-I:%M %p ",
                 long_format="%-d de %B del %Y ",
                 padding_x=-15,
@@ -126,11 +118,10 @@ class Widget:
             foreground=self.colors.white,
         )
 
-    def exit(self, fg: str, bg: str):
+    def exit(self, fg: str):
         return widget.TextBox(
-            **self.decorations.base(fg, bg),
-            **self.decorations.decoration("all"),
-            **self.decorations.icon_font(font="Iosevka Nerd Font", size=16),
+            **self.settings.ground_colors(fg),
+            **self.settings.font(font="Iosevka Nerd Font", size=16),
             mouse_callbacks={"Button1": lazy.restart()},
             padding=12,
             text="   ",
@@ -163,7 +154,7 @@ class Widget:
     @property
     def widgets(self):
         return [
-            self.logo(fg=self.colors.cyan, bg=self.colors.gray),
+            self.logo(fg=self.colors.cyan),
             self.sep(fg=self.colors.gray),
             self.gen_current_layout(),
             self.sep(fg=self.colors.gray),
@@ -175,8 +166,8 @@ class Widget:
             self.status_notifier(),
             self.sep(fg=self.colors.gray),
             widget.KeyboardLayout(configured_keyboards=["us", "us intl"], display_map={"us": "us", "us intl": "US"}),
-            *self.updates(bg=self.colors.cyan, fg=self.colors.black),
-            *self.clock(bg=self.colors.white, fg=self.colors.black),
+            *self.updates(fg=self.colors.foreground),
+            *self.clock(fg=self.colors.foreground),
             self.sep(fg=self.colors.gray),
-            self.exit(fg=self.colors.red, bg=self.colors.cyan),
+            self.exit(fg=self.colors.red),
         ]
