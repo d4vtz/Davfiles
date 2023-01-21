@@ -3,6 +3,7 @@ from typing import Optional
 
 from extras.clock import Clock
 from extras.groupbox import GroupBox
+from extras.textbox import Test
 from extras.updates import CheckUpdate
 from libqtile.bar import CALCULATED
 from libqtile.lazy import lazy
@@ -65,12 +66,12 @@ class Widget:
 
     def updates(self) -> list:
         return [
-            TextBox(
-                foreground=self.colors.yellow,
-                font="Iosevka Nerd Font",
-                fontsize=18,
-                text=" ",
-            ),
+            # TextBox(
+            #     foreground=self.colors.yellow,
+            #     font="Iosevka Nerd Font",
+            #     fontsize=18,
+            #     text=" ",
+            # ),
             CheckUpdate(
                 foreground=self.colors.foreground,
                 colour_have_updates=self.colors.red,
@@ -82,6 +83,8 @@ class Widget:
                 execute=True,
                 padding=0,
                 update_interval=3600,
+                markup=True,
+                fmt='<span font_desc="Iosevka Nerd Font" size="x-large"> </span>  {}',
             ),
         ]
 
@@ -168,6 +171,8 @@ class Widget:
             widget.KeyboardLayout(
                 configured_keyboards=["us", "us intl"],
                 display_map={"us": "us", "us intl": "US"},
+                fmt='<span font_desc="Iosevka Nerd Font" size="large"> </span>  {}',
+                markup=True,
             ),
             *self.updates(),
             *self.clock(),

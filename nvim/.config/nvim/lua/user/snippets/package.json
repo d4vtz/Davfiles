@@ -1,0 +1,17 @@
+{
+  "name": "user snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "plaintex",
+          "tex"
+        ],
+        "path": "/home/medicendav/.config/nvim/lua/user/snippets/latex.json"
+      }
+    ]
+  }
+}

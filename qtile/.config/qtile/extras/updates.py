@@ -1,10 +1,31 @@
-from subprocess import CalledProcessError, Popen
+import shlex
+from subprocess import Popen, run
 
 from libqtile.command.base import expose_command
 from libqtile.widget import base
 
 
-class CheckUpdate(base.ThreadPoolText):
+class Update:
+    def __init__(self) -> None:
+        self.updates = []
+
+    def _get_updates(self, commands):
+        updates = 0
+        for _, cmd in commands.items():
+            update = run(
+                shlex.split(cmd),
+                capture_output=True,
+                encoding="UTF-8",
+                universal_newlines=True,
+            )
+            if update.returncode == 0:
+                packages = update.stdout.split("\n")[:-1]
+                updates += len(packages)
+                self.updates.extend(packages)
+        return updates
+
+
+class CheckUpdate(base.ThreadPoolText, Update):
     CMD_DICT = {
         "pacman": "checkupdates",
         "paru": "paru -Qu",
@@ -22,6 +43,7 @@ class CheckUpdate(base.ThreadPoolText):
     ) -> None:
         base.ThreadPoolText.__init__(self, config.pop("initial_text", ""), **config)
         self.add_defaults(CheckUpdate.defaults)
+        Update.__init__(self)
 
         self.distro = distro or self.CMD_DICT
         self.initial_text = initial_text
@@ -38,27 +60,34 @@ class CheckUpdate(base.ThreadPoolText):
         self.updates = []
 
     def _check_updates(self) -> str:
-        updates = 0
-        try:
-            self.updates = []
-            for repo, cmd in self.distro.items():
-                update = self.call_process(cmd, shell=True).splitlines()
-                packages = [package.split()[0] for package in update]
-
-                updates += len(update)
-                if repo != "pacman":
-                    self.updates.append("---------- AUR ----------")
-                self.updates.extend(packages)
-        except CalledProcessError:
-            updates += 0
-
+        # updates = 0
+        # try:
+        #     self.updates = []
+        #     for repo, cmd in self.distro.items():
+        #         update = self.call_process(cmd, shell=True).splitlines()
+        #         packages = [package.split()[0] for package in update]
+        #
+        #         updates += len(update)
+        #         if repo != "pacman":
+        #             self.updates.append("---------- AUR ----------")
+        #         self.updates.extend(packages)
+        # except CalledProcessError:
+        #     updates += 0
+        #
+        # if self.layout:
+        #     if updates == 0:
+        #         self.layout.colour = self.colour_no_updates
+        #         return self.no_update_string
+        #
+        #     self.layout.colour = self.colour_have_updates
+        # return self.display_format.format(**{"updates": updates})
+        updates = self._get_updates(self.distro)
         if self.layout:
             if updates == 0:
                 self.layout.colour = self.colour_no_updates
                 return self.no_update_string
 
             self.layout.colour = self.colour_have_updates
-
         return self.display_format.format(**{"updates": updates})
 
     def poll(self) -> str:

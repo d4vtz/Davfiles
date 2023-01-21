@@ -1,9 +1,10 @@
 -- LuaSnip Options
 return {
-	-- Add paths for including more VS Code style snippets in luasnip
-	vscode_snippet_paths = {},
-	-- Extend filetypes
-	filetype_extend = {
-		javascript = { "javascriptreact" },
-	},
+	vscode_snippet_paths = { "/home/medicendav/.config/nvim/lua/user/snippets" },
+	-- vscode = {
+	-- 	paths = {
+	-- 		-- "~/.config/nvim/lua/user/snippets",
+	-- 		"/home/medicendav/.config/nvim/lua/user/snippets",
+	-- 	},
+	-- },
 }

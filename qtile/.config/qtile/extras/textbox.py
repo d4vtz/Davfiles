@@ -1,94 +1,41 @@
-import math
+import random
 
-from libqtile import bar
-from libqtile.widget import textbox
+from libqtile.widget import base
 
 
-class TextBox(textbox.TextBox):
-    def __init__(
-        self,
-        offset=0,
-        text=" ",
-        width=bar.CALCULATED,
-        x=0,
-        y=0,
-        **config,
-    ):
-        super().__init__(text, width, **config)
-        self.add_offset = offset
-        self.add_x = x
-        self.add_y = y
+class Test(base.ThreadPoolText):
+    defaults = [
+        (
+            "initial_text",
+            "",
+            "Draw the widget immediately with an initial text, "
+            "useful if it takes time to check system updates.",
+        ),
+        ("icon", "icon", "Icon show"),
+        ("display_format", "{icon}", "Comment"),
+        ("update_interval", 1, "Update interval in seconds."),
+    ]
 
-    def calculate_length(self):
-        if self.text:
-            if self.bar.horizontal:
-                return (
-                    min(self.layout.width, self.bar.width)
-                    + self.actual_padding * 2
-                    + self.add_offset
-                )
-            else:
-                return (
-                    min(self.layout.width, self.bar.height)
-                    + self.actual_padding * 2
-                    + self.add_offset
-                )
-        else:
-            return 0
+    def __init__(self, **config):
+        base.ThreadPoolText.__init__(self, config.pop("initial_text", ""), **config)
+        self.add_defaults(Test.defaults)
 
-    def draw(self):
-        if not self.can_draw():
-            return
-        self.drawer.clear(self.background or self.bar.background)
+        self.execute_polling_interval = 1
 
-        # size = self.bar.height if self.bar.horizontal else self.bar.width
-        self.drawer.ctx.save()
+    def _update(self):
+        a = random.randint(0, 10)
 
-        if not self.bar.horizontal:
-            # Left bar reads bottom to top
-            if self.bar.screen.left is self.bar:
-                self.drawer.ctx.rotate(-90 * math.pi / 180.0)
-                self.drawer.ctx.translate(-self.length, 0)
+        self.layout.colour = "#fff"
+        if a >= 5:
+            self.layout.colour = "#000"
+        return self.display_format.format(**{"icon": f"{self.icon}"})
 
-            # Right bar is top to bottom
-            else:
-                self.drawer.ctx.translate(self.bar.width, 0)
-                self.drawer.ctx.rotate(90 * math.pi / 180.0)
+    def poll(self):
+        return self._update()
 
-        # If we're scrolling, we clip the context to the scroll width less the padding
-        # Move the text layout position (and we only see the clipped portion)
-        if self._should_scroll:
-            self.drawer.ctx.rectangle(
-                self.actual_padding,
-                0,
-                self._scroll_width - 2 * self.actual_padding,
-                self.bar.size,
-            )
-            self.drawer.ctx.clip()
+    def do_execute(self):
+        self.timeout_add(self.execute_polling_interval, self._refresh_count)
 
-        size = self.bar.height if self.bar.horizontal else self.bar.width
-
-        self.layout.draw(
-            (self.actual_padding or 0) - self._scroll_offset + self.add_x,
-            int(size / 2.0 - self.layout.height / 2.0) + 1 + self.add_y,
-        )
-        self.drawer.ctx.restore()
-
-        self.drawer.draw(
-            offsetx=self.offsetx,
-            offsety=self.offsety,
-            width=self.width,
-            height=self.height,
-        )
-
-        # We only want to scroll if:
-        # - User has asked us to scroll and the scroll width is smaller than the layout (should_scroll=True)
-        # - We are still scrolling (is_scrolling=True)
-        # - We haven't already queued the next scroll (scroll_queued=False)
-        if self._should_scroll and self._is_scrolling and not self._scroll_queued:
-            self._scroll_queued = True
-            if self._scroll_offset == 0:
-                interval = self.scroll_delay
-            else:
-                interval = self.scroll_interval
-            self._scroll_timer = self.timeout_add(interval, self.do_scroll)
+    def _refresh_count(self):
+        # self.timeout_add(self.execute_polling_interval, self._refresh_count)
+        self.timer_setup()

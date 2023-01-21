@@ -1,0 +1,9 @@
+{
+    "Large bracket": {
+        "prefix": ["largeb"],
+        "body": [
+            "\\left(\ $0 \right)"
+        ],
+        "description": "Large bracket"
+    }
+}
