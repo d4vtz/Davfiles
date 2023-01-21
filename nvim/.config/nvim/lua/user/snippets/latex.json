@@ -1,9 +1,23 @@
 {
-    "Large bracket": {
-        "prefix": ["largeb"],
-        "body": [
-            "\\left(\ $0 \right)"
-        ],
-        "description": "Large bracket"
-    }
+  "Parenthesis": {
+      "prefix": "lp",
+      "body": [
+          "\\left( $1 \\right) $0"
+      ],
+      "description": "Large parenthesis"
+  },
+  "Brackets": {
+      "prefix": "lb",
+      "body": [
+          "\\left[ $1 \\right] $0"
+      ],
+      "description": "Large brackets"
+  },
+  "Keys": {
+      "prefix": "lk",
+      "body": [
+          "\\left{ $1 \\right} $0"
+      ],
+      "description": "Large keys"
+  }
 }

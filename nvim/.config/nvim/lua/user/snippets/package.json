@@ -10,7 +10,11 @@
           "plaintex",
           "tex"
         ],
-        "path": "/home/medicendav/.config/nvim/lua/user/snippets/latex.json"
+        "path": "./latex.json"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
       }
     ]
   }
