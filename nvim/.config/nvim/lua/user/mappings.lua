@@ -7,7 +7,6 @@ return {
 		["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
 		-- quick save
 		["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
-		["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
 		["<F12>"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Open Trouble" },
 		["<F11>"] = { "<cmd>TroubleRefresh<cr>", desc = "Trouble Refresh" },
 
@@ -20,6 +19,13 @@ return {
 		["<leader>r"] = { ":RunCode<CR>", desc = "Run Code" },
 		["<leader>n"] = { "<cmd>NeoRootSwitchMode<cr>", desc = "Change root" },
 		["<leader>m"] = { "<cmd>NeoRootChange<cr>", desc = "Create new root" },
+		-- Desactive arrows
+		["<Left>"] = {"<Nop>"},
+		["<Right>"] = {"<Nop>"},
+		["<Up>"] = {"<Nop>"},
+		["<Down>"] = {"<Nop>"},
+		["j"] = {"gj"},
+		["k"] = {"gk"},
 	},
 	t = {
 		-- setting a mapping to false will disable it
