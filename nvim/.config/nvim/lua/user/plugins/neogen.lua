@@ -1,5 +1,4 @@
 return {
-	"danymat/neogen",
 	dependencias = "nvim-treesitter/nvim-treesitter",
 	cmd = { "Neogen" },
 	config = function()
