@@ -6,5 +6,5 @@ return {
   --     { "<leader>gdh", ":diffget //2<cr>" },
   --     { "<leader>gdl", ":diffget //3<cr>" },
   --   },
-  --   cmd = { "G", "Git" },
+  cmd = { "G", "Git" },
 }
