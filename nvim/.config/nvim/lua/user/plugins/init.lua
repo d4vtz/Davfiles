@@ -38,5 +38,4 @@ return {
 		end,
 	},
 	require("user.plugins.fugitive"),
-	-- ["tpope/vim-fugitive"] = {},
 }
