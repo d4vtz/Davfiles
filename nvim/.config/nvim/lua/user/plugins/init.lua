@@ -38,4 +38,5 @@ return {
 		end,
 	},
 	require("user.plugins.fugitive"),
+  require("user.plugins.neogen"),
 }
