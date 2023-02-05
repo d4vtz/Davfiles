@@ -21,5 +21,6 @@ return {
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader
+    heirline_bufferline = true,
   },
 }
