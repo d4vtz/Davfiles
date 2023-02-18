@@ -167,7 +167,7 @@ class Widget:
             widget.Spacer(),
             Amdgpu(),
             widget.Systray(padding=8),
-            self.status_notifier(),
+            # self.status_notifier(),
             self.sep(),
             widget.KeyboardLayout(
                 configured_keyboards=["us", "us intl"],
