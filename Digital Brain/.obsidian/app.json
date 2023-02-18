@@ -1,0 +1,12 @@
+{
+  "spellcheck": true,
+  "spellcheckLanguages": [
+    "es-MX",
+    "en-US"
+  ],
+  "alwaysUpdateLinks": true,
+  "promptDelete": false,
+  "legacyEditor": false,
+  "vimMode": true,
+  "newFileLocation": "current"
+}

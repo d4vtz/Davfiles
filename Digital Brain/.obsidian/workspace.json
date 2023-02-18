@@ -1,0 +1,163 @@
+{
+  "main": {
+    "id": "9693798eefae682b",
+    "type": "split",
+    "children": [
+      {
+        "id": "1509fae56b572852",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1fe822e4fcede1c8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Physics/Partícula en una caja circular.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e069959953d7a388",
+    "type": "split",
+    "children": [
+      {
+        "id": "9723906a44390975",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4753ce4bcc0bf6d5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "438949ef8c8918b3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2c86a404cca1fb18",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "9d81d7322b8386f5",
+    "type": "split",
+    "children": [
+      {
+        "id": "69e9b93f9256fa42",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8779044b65129a49",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Physics/Partícula en una caja circular.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "32a28cca18386bd4",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Physics/Partícula en una caja circular.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c0b890764b9a4a20",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "e5e5dc7289c98ff7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Physics/Partícula en una caja circular.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir quick switcher": false,
+      "graph:Abrir vista de gráfico": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false
+    }
+  },
+  "active": "1fe822e4fcede1c8",
+  "lastOpenFiles": [
+    "Physics/Solución numérica de una partícula en una caja circular.md",
+    "Physics/método de diferencias finitas.md",
+    "Physics/Solución numérica de una partícula en una caja bi-dimensional.md",
+    "Physics/partícula en una caja 2D.md",
+    "Physics/Solución numérica de una partícula en una caja unidimensional.md",
+    "Physics/Partícula en una caja 1D.md",
+    "Physics/Particula en una caja.md",
+    "Physics/Solución analítica de una partícula en una caja unidimensional.md",
+    "Physics/Solución analítica de una partícula en una caja bi-dimensional.md",
+    "Physics/States.png.md"
+  ]
+}
