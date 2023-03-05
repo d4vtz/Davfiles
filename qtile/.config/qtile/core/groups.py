@@ -17,6 +17,7 @@ groups = [
     Group(
         name="Home",
         label=" ",
+        matches=[Match(wm_class="obsidian")],
     ),
     Group(
         name="Web",
@@ -26,7 +27,7 @@ groups = [
     Group(
         name="Code",
         label=" ",
-        matches=[Match(wm_class="code")],
+        matches=[Match(wm_class="code"), Match(wm_class="kitty")],
     ),  #   
     Group(
         name="Physic",
@@ -42,10 +43,7 @@ groups = [
         name="Media",
         label=" ",
     ),
-    Group(
-        name="Social",
-        label=" ",
-    ),
+    Group(name="Social", label=" ", matches=[Match(wm_class="telegram-desktop")]),
     Group(
         name="System",
         label=" ",

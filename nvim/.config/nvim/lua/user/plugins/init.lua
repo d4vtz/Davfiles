@@ -16,4 +16,5 @@ return {
   ["j-hui/fidget.nvim"] = require("user.plugins.fidget"),
   ["tpope/vim-fugitive"] = require("user.plugins.fugitive"),
   ["danymat/neogen"] = require("user.plugins.neogen"),
+  ["~/Proyectos/Latex/inkscape_figures"] = {},
 }
