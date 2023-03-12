@@ -9,23 +9,22 @@ return {
 		["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
 		["<F12>"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Open Trouble" },
 		["<F11>"] = { "<cmd>TroubleRefresh<cr>", desc = "Trouble Refresh" },
-
 		-- Compilacion de LaTex
 		["<F9>"] = { "<cmd>VimtexCompile<cr>", desc = "Compile latex" },
 		["<F8>"] = { "<cmd>VimtexView<cr>", desc = "View compile pdf" },
 		["<C-b>"] = { "<cmd>Telescope bibtex<cr>", desc = "Telescope bibtex" },
-		["hw"] = { "<cmd>HopWord<cr>", desc = "Lanzar HopWord" },
-		["hc"] = { "<cmd>HopChar2<cr>" },
+		["<C-w>"] = { "<cmd>HopWord<cr>", desc = "Lanzar HopWord" },
+		["<C-c>"] = { "<cmd>HopChar2<cr>" },
 		["<leader>r"] = { ":RunCode<CR>", desc = "Run Code" },
 		["<leader>n"] = { "<cmd>NeoRootSwitchMode<cr>", desc = "Change root" },
 		["<leader>m"] = { "<cmd>NeoRootChange<cr>", desc = "Create new root" },
 		-- Desactive arrows
-		["<Left>"] = {"<Nop>"},
-		["<Right>"] = {"<Nop>"},
-		["<Up>"] = {"<Nop>"},
-		["<Down>"] = {"<Nop>"},
-		["j"] = {"gj"},
-		["k"] = {"gk"},
+		["<Left>"] = { "<Nop>" },
+		["<Right>"] = { "<Nop>" },
+		["<Up>"] = { "<Nop>" },
+		["<Down>"] = { "<Nop>" },
+		["j"] = { "gj" },
+		["k"] = { "gk" },
 	},
 	t = {
 		-- setting a mapping to false will disable it
