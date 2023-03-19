@@ -1,6 +1,8 @@
 return {
+	'phaazon/hop.nvim',
 	branch = "v2",
-	config = function()
-		require("hop").setup({})
-	end,
+	lazy = true,
+	enabled = true,
+	config = true,
+	cmd = { "HopWord", "HopChar2" },
 }
