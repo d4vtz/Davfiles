@@ -21,5 +21,9 @@ return {
 				"-interaction=nonstopmode",
 			},
 		}
+		vim.g.vimtex_quickfix_ignore_filters = {
+			'Underfull',
+			'Overfull',
+		}
 	end,
 }
