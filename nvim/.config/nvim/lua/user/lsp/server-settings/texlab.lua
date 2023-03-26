@@ -1,13 +1,15 @@
 return {
 	settings = {
 		texlab = {
+			auxDirectory = "Build",
+			outputDirectory = "Build",
 			build = {
 				executable = "latexmk",
 				onSave = false,
 				forwardSearchAfter = true,
-				args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir", "%f" },
+				args = { "-pdf", "-pvc", "-interaction=nonstopmode", "-synctex=1", "-outdir=./Build", "-aux-directory=./Build",
+					"%f" },
 			},
-			auxDirectory = "Build",
 			forwardSearch = {
 				executable = "zathura",
 				args = { "--synctex-forward", "%l:1:%f", "%p" },
