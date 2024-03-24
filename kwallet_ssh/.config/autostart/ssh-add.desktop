@@ -1,5 +1,4 @@
 [Desktop Entry]
-Exec=Exec=ssh-add -q ~/.ssh/id_ed25519
+Exec=ssh-add -q
 Name=ssh-add
 Type=Application
-X-KDE-AutostartScript=trie
