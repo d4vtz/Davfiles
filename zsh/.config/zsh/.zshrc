@@ -6,7 +6,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Upload plugin manager zap
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+if ! [ -f $HOME/.local/share/zap/zap.zsh ]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+fi
+source "$HOME/.local/share/zap/zap.zsh"
 
 plug "zsh-users/zsh-completions"
 plug "zsh-users/zsh-autosuggestions"
