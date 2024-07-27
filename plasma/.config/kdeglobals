@@ -104,7 +104,7 @@ smallestReadableFont=SF Pro Display,7,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 toolBarFont=SF Pro Display,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [Icons]
-Theme=dracula-icons-circle
+Theme=Tela-circle-dark
 
 [KDE]
 LookAndFeelPackage=Dracula

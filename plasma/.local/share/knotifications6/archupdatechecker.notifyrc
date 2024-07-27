@@ -1,0 +1,10 @@
+
+	[Global]
+	IconName=update-none
+	Comment=Arch Update Checker
+
+	[Event/sound]
+	Name=Sound popup
+	Comment=Popup and Sound options enabled
+	Action=Popup|Sound
+	Sound=message-new-instant.ogg
