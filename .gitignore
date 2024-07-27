@@ -3,3 +3,5 @@ zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/zsh_history
 ltex.dictionary.es.txt
 **/__pycache__/**
+plasma/.config/gtkrc
+plasma/.config/gtkrc-2.0
