@@ -5,3 +5,5 @@ ltex.dictionary.es.txt
 **/__pycache__/**
 plasma/.config/gtkrc
 plasma/.config/gtkrc-2.0
+plasma/.local/share/konsole/konsolestaterc
+plasma/.config/plasma-org.kde.plasma.desktop-appletsrc
