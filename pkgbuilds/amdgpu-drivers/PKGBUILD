@@ -1,0 +1,34 @@
+# Maintainer: d4vtz <davidtorrezreyes@gmail.com>
+pkgname=amdgpu-drivers
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="System configuration for amdgpu"
+arch=('any')
+url="https://github.com/d4vtz"
+license=('MIT')
+
+source=(
+    amdgpu.conf
+    radeon.conf
+    )
+
+md5sums=(
+    'SKIP'
+    'SKIP'
+    )
+
+depends=(
+    mesa
+    xf86-video-amdgpu
+    vulkan-radeon
+    amdvlk
+    libva-mesa-driver
+    mesa-vdpau
+)
+
+package() {
+    # Install configs files amdgpu
+    install -Dm0644 amdgpu.conf "$pkgdir"/etc/modprobe.d/amdgpu.conf
+    install -Dm0644 radeon.conf "$pkgdir"/etc/modprobe.d/radeon.conf
+}
+install=amdgpu-drivers.install
