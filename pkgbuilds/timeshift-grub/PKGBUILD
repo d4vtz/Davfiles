@@ -1,0 +1,30 @@
+# Maintainer: d4vtz <davidtorrezreyes@gmail.com>
+pkgname=timeshift-grub
+pkgver=0.0.1
+pkgrel=2
+pkgdesc="System configuration for timeshift grub btrfs"
+arch=('any')
+url="https://github.com/d4vtz"
+license=('MIT')
+
+source=(
+    grub-btrfsd.conf
+    )
+
+md5sums=(
+    'SKIP'
+    )
+
+depends=(
+    timeshift
+    timeshift-autosnap
+    grub-btrfs
+    inotify-tools
+)
+
+package() {
+    # Install configs unit systemd grub-btrfsd with timeshift
+    install -d $"pkgdir"/etc/systemd/system/unit.d
+    install -Dm0644 grub-btrfsd.conf "$pkgdir"/etc/systemd/system/unit.d/grub-btrfsd.conf
+}
+install=timeshift-grub.install

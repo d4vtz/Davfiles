@@ -1,0 +1,10 @@
+post_install() {
+    post_upgrade
+}
+
+post_upgrade() {
+    systemctl enable --now grub-btrfsd.service
+    systemctl enable --now cronie.service
+    sed -i 's/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck grub-btrfs-overlayfs)/g' /etc/mkinitcpio.conf
+    mkinitcpio -P
+}

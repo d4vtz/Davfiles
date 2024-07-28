@@ -1,0 +1,16 @@
+pkgbase = timeshift-grub
+	pkgdesc = System configuration for timeshift grub btrfs
+	pkgver = 0.0.1
+	pkgrel = 1
+	url = https://github.com/d4vtz
+	install = timeshift-grub.install
+	arch = any
+	license = MIT
+	depends = timeshift
+	depends = timeshift-autosnap
+	depends = grub-btrfs
+	depends = inotify-tools
+	source = grub-btrfsd.conf
+	md5sums = SKIP
+
+pkgname = timeshift-grub
