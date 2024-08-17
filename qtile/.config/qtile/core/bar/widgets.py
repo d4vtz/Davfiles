@@ -1,9 +1,9 @@
 import os
 from typing import Optional
 
-from extras.amdgpu import Amdgpu
+#from extras.amdgpu import Amdgpu
 from extras.clock import Clock
-from extras.groupbox import GroupBox
+#from extras.groupbox import GroupBox
 from extras.updates import CheckUpdate
 from libqtile.bar import CALCULATED
 from libqtile.lazy import lazy
@@ -38,8 +38,8 @@ class Widget:
             text=" ",
         )
 
-    def groups(self) -> GroupBox:
-        return GroupBox(
+    def groups(self) -> widget.GroupBox:
+        return widget.GroupBox(
             font="Iosevka Nerd Font",
             fontsize=16,
             colors=[
@@ -165,7 +165,7 @@ class Widget:
             widget.Spacer(),
             self.window_name(),
             widget.Spacer(),
-            Amdgpu(),
+            #Amdgpu(),
             widget.Systray(padding=8),
             # self.status_notifier(),
             self.sep(),
